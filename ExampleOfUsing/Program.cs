@@ -11,7 +11,7 @@ public static class Program
 
         var square = new Square(5); // добавленная фигура, которой нет в библиотеке
 
-        List<IShapeWithArea> shapes = new List<IShapeWithArea> { circle, triangle, square }; // Вычисление площади фигуры без знания типа фигуры в compile-time
+        var shapes = new List<IShapeWithArea> { circle, triangle, square }; // Вычисление площади фигуры без знания типа фигуры в compile-time
         foreach (var shape in shapes)
         {
             System.Console.WriteLine($"Area of shape is {shape.CalculateArea()}");
