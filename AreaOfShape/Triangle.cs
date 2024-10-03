@@ -31,7 +31,7 @@ public class Triangle : IShapeWithArea
             throw new ArgumentOutOfRangeException("Incorrect ratio of the sides of the triangle");
     }
 
-    public bool IsRightAngled()
+    public bool IsRightAngled() // Проверка на то, является ли треугольник прямоугольным
     {
         var sides = new[] { SideA, SideB, SideC }.OrderBy(x => x).ToArray();
         return Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) == Math.Pow(sides[2], 2);

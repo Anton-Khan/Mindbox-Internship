@@ -13,7 +13,7 @@ public class Circle : IShapeWithArea
 
     private void ValidateRadius(double radius)
     {
-        if(radius < 0)
+        if(radius <= 0)
             throw new ArgumentOutOfRangeException(nameof(radius), "Radius must be greater than 0");
     }
 
