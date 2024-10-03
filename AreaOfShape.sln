@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaOfShape", "AreaOfShape\AreaOfShape.csproj", "{39998043-55B0-46D1-B6F4-5A6C63AFF111}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaLib", "AreaOfShape\AreaOfShape.csproj", "{39998043-55B0-46D1-B6F4-5A6C63AFF111}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExampleOfUsing", "ExampleOfUsing\ExampleOfUsing.csproj", "{DF0D9DA2-1230-4F24-8E85-8FA501F543A2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaOfShapes.Tests", "AreaOFShapes.Tests\AreaOFShapes.Tests.csproj", "{DEECB6F9-9E74-4793-87E3-B77475CECBDD}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AreaLib.Tests", "AreaOFShapes.Tests\AreaOFShapes.Tests.csproj", "{DEECB6F9-9E74-4793-87E3-B77475CECBDD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
