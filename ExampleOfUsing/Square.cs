@@ -1,4 +1,4 @@
-using AreaOfShape;
+using AreaLib;
 
 namespace ExampleOfUsing;
 

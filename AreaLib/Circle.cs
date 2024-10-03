@@ -1,4 +1,4 @@
-namespace AreaOfShape;
+namespace AreaLib;
 
 public class Circle : IShapeWithArea
 {

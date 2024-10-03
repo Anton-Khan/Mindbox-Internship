@@ -1,4 +1,4 @@
-namespace AreaOfShape.Tests;
+namespace AreaLib.Tests;
 
 [TestClass]
 public class TriangleTests

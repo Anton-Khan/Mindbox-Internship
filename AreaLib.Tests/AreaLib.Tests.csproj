@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AreaOfShape\AreaOfShape.csproj" />
+    <ProjectReference Include="..\AreaLib\AreaLib.csproj" />
   </ItemGroup>
 
 </Project>
