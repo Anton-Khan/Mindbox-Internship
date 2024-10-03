@@ -10,25 +10,11 @@ public class Triangle : IShapeWithArea
 
     public Triangle(double sideA, double sideB, double sideC)
     {
-        ValidateSidesLength(sideA, sideB, sideC);
+        ValidateSides(sideA, sideB, sideC);
 
         SideA = sideA;
         SideB = sideB;
         SideC = sideC;
-    }
-
-    private void ValidateSidesLength(double sideA, double sideB, double sideC)
-    {
-        if (sideA <= 0)
-            throw new ArgumentOutOfRangeException(nameof(sideA), ErrorMessage);
-        if (sideB <= 0)
-            throw new ArgumentOutOfRangeException(nameof(sideB), ErrorMessage);
-        if (sideC <= 0)
-            throw new ArgumentOutOfRangeException(nameof(sideC), ErrorMessage);
-
-        var sides = new[] { SideA, SideB, SideC }.OrderBy(x => x).ToArray();
-        if(sides[0] + sides[1] > sides[2])
-            throw new ArgumentOutOfRangeException("Incorrect ratio of the sides of the triangle");
     }
 
     public bool IsRightAngled() // Проверка на то, является ли треугольник прямоугольным
@@ -37,13 +23,25 @@ public class Triangle : IShapeWithArea
         return Math.Pow(sides[0], 2) + Math.Pow(sides[1], 2) == Math.Pow(sides[2], 2);
     }
 
-    private double CalculateHalfOfPerimeter()
-    {
-        return (SideA + SideB + SideC) / 2;
-    }
     public double CalculateArea()
     {
-        var halfOfPerimeter = CalculateHalfOfPerimeter();
+        var halfOfPerimeter = (SideA + SideB + SideC) / 2;
         return Math.Sqrt(halfOfPerimeter * (halfOfPerimeter - SideA) * (halfOfPerimeter - SideB) * (halfOfPerimeter - SideC));
     }
+
+    private void ValidateSides(double sideA, double sideB, double sideC)
+    {
+        ValidateSide(sideA);
+        ValidateSide(sideB);
+        ValidateSide(sideC);
+
+        var sides = new[] { sideA, sideB, sideC }.OrderBy(x => x).ToArray();
+        if(sides[0] + sides[1] <= sides[2])
+            throw new ArgumentOutOfRangeException("sides", "Incorrect ratio of the sides of the triangle");
+    }
+    private void ValidateSide(double side)
+    {
+        if (side <= 0)
+            throw new ArgumentOutOfRangeException(nameof(side), side, ErrorMessage);
+    } 
 }
