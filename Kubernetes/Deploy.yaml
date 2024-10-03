@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web-app
+  labels:
+    app: web-app
+spec:
+  replicas: 3  # Три пода
+  selector:
+    matchLabels:
+      app: web-app
+  template:
+    metadata:
+      labels:
+        app: web-app
+    spec:
+      containers:
+      - name: web-app-container
+        image: docker-image:latest  # Docker образ для каждого контейнера пода
+        resources:
+          requests:
+            cpu: "0.2"  # На старте приложение требует больше ресурсов CPU (стоит уточнить требования)
+            memory: "128Mi"  # Приложение всегда требует 128Mi памяти
+          limits:
+            cpu: "0.5"  # Ограничение на максимум использования CPU на старте (стоит уточнить требования)
+            memory: "256Mi"  # Устанавливаем лимит памяти для безопасности (стоит уточнить требования)
+        ports:
+        - containerPort: 80  # стандартный порт приложения
+
+        # Readiness Probe проверяет, готов ли под к работе после инициализации
+        readinessProbe:
+          httpGet:
+            path: /health  # Эндпоинт для проверки здоровья пода
+            port: 80
+          initialDelaySeconds: 10  # Задержка перед первой проверкой, ожидаем инициализацию
+          periodSeconds: 5  # Проверяем каждые 5 секунд
+
+        # Startup Probe учитывает более длительное время старта приложения
+        startupProbe:
+          httpGet:
+            path: /health  # Тот же эндпоинт для проверки
+            port: 80
+          failureThreshold: 3  # Под рестартнется, если три раза подряд проверка провалится
+          periodSeconds: 5  # Периодичность проверок
+
+      # Affinity для обеспечения отказоустойчивости
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100  # Высокий приоритет для этого правила
+            podAffinityTerm:
+            - labelSelector:
+                matchLabels:
+                  app: web-app
+              topologyKey: "kubernetes.io/hostname"  # Не гарантируем, что поды не окажутся на одной ноде, только в случае нехватки ресурсов
+
+      # Политика перезапуска контейнера
+      restartPolicy: Always
